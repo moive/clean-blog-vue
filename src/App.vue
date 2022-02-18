@@ -1,11 +1,21 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+	<router-view/>
 </template>
 
-<style lang="scss">
+<script lang="ts">
+import { defineComponent, onMounted, ref } from 'vue';
+import { storyapi } from './utils/api'
 
-</style>
+export default defineComponent({
+	setup() {
+		onMounted(async ()=>{
+
+			const data = await storyapi.get('cdn/stories', {
+				"token": process.env.VUE_APP_TOKEN,
+			});
+
+			console.log(data)
+		})
+	},
+})
+</script>
