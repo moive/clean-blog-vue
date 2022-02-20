@@ -1,14 +1,18 @@
 <template>
-	<div v-html="text1"></div>
+	<Header/>
 	<router-view/>
+	<Footer />
 </template>
 
 <script lang="ts">
 import { RichtextInstance, StoryblokResult } from 'storyblok-js-client';
 import { defineComponent, onMounted, ref, watch } from 'vue';
+import Header from './components/Layout/Header.vue';
+import Footer from './components/Layout/Footer.vue';
 import { storyapi } from './utils/api'
 
 export default defineComponent({
+  components: { Header, Footer },
 	setup() {
 		let text1 = ref<string>('');
 
