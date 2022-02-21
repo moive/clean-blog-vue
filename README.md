@@ -1,5 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6a379dbc-127b-420b-b13a-28d5aa25c4a3/deploy-status)](https://app.netlify.com/sites/clean-blog-vue/deploys)
-
 # clean-blog-vue
 
 ## Project setup
@@ -32,6 +30,6 @@ npm run test:unit
 npm run lint
 ```
 
-### Customize configuration
+## Link demo
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See [demo](https://clean-blog-vue.netlify.app/).
