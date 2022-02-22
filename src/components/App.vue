@@ -1,5 +1,4 @@
 <template>
-	<Navbar/>
 	<Header/>
 	<router-view/>
 	<Footer />

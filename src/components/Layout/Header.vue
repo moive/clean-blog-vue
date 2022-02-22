@@ -1,5 +1,5 @@
 <template>
-    //
+    <Navbar/>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
