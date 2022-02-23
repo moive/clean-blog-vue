@@ -16,7 +16,7 @@
             <li
                 class="nav-item"
                 v-for="link in Links"
-                :key="link"
+                :key="link._id"
             >
                 <router-link
                     class="nav-link px-lg-3 py-3 py-lg-4"
@@ -32,6 +32,7 @@ import { defineComponent, PropType, ref, watchEffect } from 'vue';
 
 interface INav extends StoryData {
     url: string;
+    _id: string;
 }
 
 
@@ -49,7 +50,7 @@ export default defineComponent({
             const itemsNav:INav[] = props.items.filter((item)=>item.name != 'Layout' && !(/post/.test(item.name)));
 
             const urls:Partial<INav>[] = itemsNav.map((el:INav)=>({
-                uuid: el.uuid,
+                _id: el.uuid,
                 name: el.name,
                 url: el.slug == 'home' ? '/' : '/' + el.slug,
             }));
