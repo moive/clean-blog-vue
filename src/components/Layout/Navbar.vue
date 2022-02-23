@@ -27,9 +27,9 @@
     </div>
 </template>
 <script lang="ts">
-import { storyapi } from '@/utils/api';
-import { StoryblokResult, StoryData } from 'storyblok-js-client';
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { StoryData } from 'storyblok-js-client';
+import { defineComponent, PropType, ref, watchEffect } from 'vue';
+
 interface INav extends StoryData {
     url: string;
 }
@@ -37,23 +37,24 @@ interface INav extends StoryData {
 
 export default defineComponent({
     name:'Navbar',
-    setup() {
-        let  Links = ref<INav[]>([]);
+    props:{
+        items:{
+            type: Array as PropType<INav[]>,
+            required: true,
+        }
+    },
+    setup(props) {
+        let  Links = ref<Partial<INav>[]>([]);
+        watchEffect(()=>{
+            const itemsNav:INav[] = props.items.filter((item)=>item.name != 'Layout' && !(/post/.test(item.name)));
 
-        const dataHeader =async () => {
-            const {data}: StoryblokResult = await storyapi.get('cdn/stories');
-            const itemsNav = data.stories.filter((item: StoryData)=>item.name != 'Layout' && !(/post/.test(item.name)));
-            const urls: INav[] = itemsNav.map((el:INav)=>({
-                id: el.uuid,
+            const urls:Partial<INav>[] = itemsNav.map((el:INav)=>({
+                uuid: el.uuid,
                 name: el.name,
                 url: el.slug == 'home' ? '/' : '/' + el.slug,
             }));
             
             Links.value = urls;
-        }
-
-        onMounted(()=>{
-            dataHeader();
         });
         
         return {

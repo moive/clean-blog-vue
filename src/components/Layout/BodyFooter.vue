@@ -1,5 +1,4 @@
 <template>
-    <!-- Footer-->
         <footer class="border-top">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -12,9 +11,8 @@
         </footer>
 </template>
 <script lang="ts">
-import { storyapi } from '@/utils/api';
-import { StoryblokComponent, StoryblokResult, StoryData } from 'storyblok-js-client';
-import { defineComponent, onMounted, ref } from 'vue';
+import { StoryData } from 'storyblok-js-client';
+import { defineComponent, ref, watchEffect } from 'vue';
 
 interface IFooter {
     copy_right : string;
@@ -22,32 +20,28 @@ interface IFooter {
 }
 
 export default defineComponent({
-    name:'footer',
-    setup() {
+    name:'BodyFooter',
+    props:{
+        content: {
+            type:Object,
+            required: true
+        }
+    },
+    setup(props) {
 
         const copyRight = ref<string>('')
         const socialMedia = ref<StoryData[]>([])
 
-        const load =async () => {
-            const {data}: StoryblokResult = await storyapi.get('cdn/stories');
-            const stories = data.stories;
-
-            const {content}: StoryData = stories.reduce((acc:StoryData, el:StoryData)=>{
-                if(el.name == 'Layout') return acc = el;
-                return {}
-            },{});
+        watchEffect(()=>{
+            const {copy_right, social_media} = props.content;
             
-            const {copy_right, social_media} = content.footer[0];
-
             copyRight.value = copy_right;
             socialMedia.value = social_media;
-
-        }
-        onMounted(()=>{
-            load();
         });
+
         return {
-            copyRight, socialMedia
+            copyRight,
+            socialMedia,
         }
     },
 })
