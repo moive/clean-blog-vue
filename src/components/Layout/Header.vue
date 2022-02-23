@@ -1,5 +1,10 @@
 <template>
-    <Navbar :items="itemsHeader"/>
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <Logo :items="itemsLogo" />
+            <Navbar/>
+        </div>
+    </nav>
 </template>
 <script lang="ts">
 import { storyapi } from '@/utils/api'
@@ -9,7 +14,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 export default defineComponent({
     name:'header',
     setup() {
-        const itemsHeader = ref<Partial<StoryData>>({})
+        const itemsLogo = ref<Partial<StoryData>>({})
         const dataHeader =async () => {
             const {data}: StoryblokResult = await storyapi.get('cdn/stories');
             const stories = data.stories;
@@ -19,7 +24,7 @@ export default defineComponent({
                 return {}
             },{});
 
-            itemsHeader.value = content.header[0];
+            itemsLogo.value = content.header[0];
 
         };
 
@@ -27,7 +32,7 @@ export default defineComponent({
             dataHeader();
         });
         return {
-            itemsHeader
+            itemsLogo
         }
     },
 })
