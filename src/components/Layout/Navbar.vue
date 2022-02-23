@@ -55,11 +55,6 @@ export default defineComponent({
         onMounted(()=>{
             dataHeader();
         });
-
-
-        // watch(() => props.items, (item) => {
-        //     urlLinkLogo.value = item.LogoLink.url;
-        // });
         
         return {
             Links
