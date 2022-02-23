@@ -31,7 +31,7 @@ export default defineComponent({
         }
     },
     setup({items}) {
-        console.log(items)
+        // console.log(items)
     },
 })
 </script>

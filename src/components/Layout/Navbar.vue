@@ -2,8 +2,21 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="index.html">Start Bootstrap</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" :href="urlLinkLogo">
+                <img :src="items.Logo" alt="Logo" v-if="!!items.Logo">
+                <span v-else>
+                    {{items.LogoText}}
+                </span>
+            </a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
                 Menu
                 <i class="fas fa-bars"></i>
             </button>
@@ -19,12 +32,27 @@
     </nav>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, watch } from 'vue';
 
 export default defineComponent({
     name:'Navbar',
-    setup() {
-        //
+    props: {
+        items: {
+            type: Object,
+            default: ()=> {}
+        }
+    },
+    setup(props) {
+        let  urlLinkLogo = ref('');
+        let logo = ref('');
+
+        watch(() => props.items, (item) => {
+            urlLinkLogo.value = item.LogoLink.url;
+        });
+        
+        return {
+            urlLinkLogo
+        }
     },
 })
 </script>
