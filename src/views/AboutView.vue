@@ -1,6 +1,6 @@
 <template>
 	<HeroTop :items="itemsHero"/>
-	<BodyContent :bodyText="bodyText"/>
+	<BodyContent :bodyText="bodyText" />
 </template>
 <script lang="ts">
 import { storyapi } from '@/utils/api';
