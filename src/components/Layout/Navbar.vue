@@ -47,7 +47,8 @@ export default defineComponent({
     setup(props) {
         let  Links = ref<Partial<INav>[]>([]);
         watchEffect(()=>{
-            const itemsNav:INav[] = props.items.filter((item)=>item.name != 'Layout' && !(/post/.test(item.name)));
+            const itemsNav:INav[] = props.items.filter((item)=>item.content.isNav);
+            console.log(itemsNav)
 
             const urls:Partial<INav>[] = itemsNav.map((el:INav)=>({
                 _id: el.uuid,
