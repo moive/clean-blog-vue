@@ -19,12 +19,16 @@ const routes: Array<RouteRecordRaw> = [
 	{
 		path: "/posts",
 		component: () => import("../components/Posts.vue"),
-		// children: [
-		// 	{
-		// 		path: ":post",
-		// 		component: () => import("../views/PostView.vue"),
-		// 	},
-		// ],
+	},
+	{
+		path: "/posts",
+		component: () => import("../components/PostsLayout.vue"),
+		children: [
+			{
+				path: ":post",
+				component: () => import("../views/PostView.vue"),
+			},
+		],
 	},
 ];
 

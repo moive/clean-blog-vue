@@ -6,7 +6,7 @@
 				<div v-for="post in postItems" :key="post.id">
 					<!-- Post preview-->
 					<div class="post-preview">
-						<a :href="post.slug">
+						<a :href="`/posts/${post.slug}`">
 							<h2 class="post-title">{{post.content.hero_post[0].title}}</h2>
 							<h3 class="post-subtitle" v-if="!!post.content.hero_post[0].sub_title">{{post.content.hero_post[0].sub_title}}</h3>
 						</a>
@@ -65,7 +65,6 @@ export default defineComponent({
 
 		watchEffect(()=>{
             postItems.value = posts.value;
-			console.log(postItems)
         });
 
 		const formatDate = (post: StoryData)=> {
