@@ -1,5 +1,6 @@
 import { inject, InjectionKey } from "vue";
 
+// https://logaretm.com/blog/type-safe-provide-inject/
 export function injectStrict<T>(key: InjectionKey<T>, fallback?: T) {
 	const resolved = inject(key, fallback);
 
