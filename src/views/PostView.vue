@@ -7,11 +7,12 @@
 	<BodyContent :bodyText="bodyText"/>
 </template>
 <script lang="ts">
-import items from '../mixins/posts';
-import { defineComponent, ref, watch, watchEffect } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import { StoryData } from 'storyblok-js-client';
 import { useRoute } from "vue-router";
 import { storyapi } from '@/utils/api';
+import { injectStrict } from '@/utils/global';
+import { PostsKey } from '@/utils/symbols';
 
 interface IHeroTop {
 	title: string;
@@ -27,7 +28,7 @@ export default defineComponent({
 
         const route = useRoute();
 
-        const { posts} = items();
+        const posts = injectStrict(PostsKey);
 
         const dataHero = async () => {
             const itemCurrent: StoryData = posts.value.reduce(
@@ -53,7 +54,7 @@ export default defineComponent({
         };
 
         watch(()=> posts.value, (val)=>{
-            console.log("posts changes: ", val)
+            // console.log("posts changes: ", val)
             dataHero();
         });
 

@@ -26,9 +26,10 @@
 </template>
 <script lang="ts">
 import { storyapi } from '@/utils/api';
+import { injectStrict } from '@/utils/global';
+import { PostsKey } from '@/utils/symbols';
 import { StoryblokResult, StoryData } from 'storyblok-js-client';
 import { defineComponent, onMounted, ref, watchEffect } from 'vue';
-import items from '../mixins/posts';
 interface IHeroTop {
 	title: string;
 	sub_title: string;
@@ -38,10 +39,9 @@ export default defineComponent({
     name: 'Posts',
     setup() {
         const postItems = ref<StoryData[]>([]);
-        const { posts} = items();
+        const posts = injectStrict(PostsKey);
 
         const itemsHero = ref<Partial<IHeroTop>>({});
-		const bodyText = ref('');
 
 		const dataHero =async () => {
             const {data}: StoryblokResult = await storyapi.get('cdn/stories/posts');
