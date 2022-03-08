@@ -11,15 +11,8 @@
     </ul>
 </template>
 <script lang="ts">
-interface ILinkItem{
-    id:string;
-    url: string;
-}
-interface IItems {
-    _uid: string;
-    link: ILinkItem;
-    name: string;
-}
+
+import { IItems } from '@/utils/types';
 import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({

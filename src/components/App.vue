@@ -8,12 +8,9 @@
 </template>
 
 <script lang="ts">
+import { storyapi, PostsKey } from '@/utils';
 import { StoryblokResult, StoryData } from 'storyblok-js-client';
 import { defineComponent, onMounted, provide, ref } from 'vue';
-import { storyapi } from '../utils/api';
-
-import { PostsKey, ProductKey } from '@/utils/symbols';
-import { Product } from '@/utils/types';
 
 export default defineComponent({
 	name:'app',
@@ -23,10 +20,6 @@ export default defineComponent({
 		const storiesForNav = ref<StoryData[]>([]);
 
 		const posts = ref<StoryData[]>([]);
-
-		const product = ref<Product>({name:'Amazing T-Shirt', price: 100})
-
-		provide(ProductKey,product);
 
 		provide(PostsKey, posts)
 

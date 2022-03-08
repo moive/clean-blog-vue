@@ -10,15 +10,8 @@
 import { defineComponent, ref, watch } from 'vue';
 import { StoryData } from 'storyblok-js-client';
 import { useRoute } from "vue-router";
-import { storyapi } from '@/utils/api';
-import { injectStrict } from '@/utils/global';
-import { PostsKey } from '@/utils/symbols';
-
-interface IHeroTop {
-	title: string;
-	sub_title: string;
-	backgroundImage: string;
-}
+import { IHeroTop } from '@/utils/types';
+import { injectStrict, PostsKey, storyapi } from '@/utils';
 
 export default defineComponent({
     setup() {

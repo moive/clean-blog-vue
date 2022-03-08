@@ -3,15 +3,10 @@
 	<BodyContent :bodyText="bodyText" />
 </template>
 <script lang="ts">
-import { storyapi } from '@/utils/api';
+import { storyapi } from '@/utils';
+import { IHeroTop } from '@/utils/types';
 import { StoryblokResult } from 'storyblok-js-client';
 import { defineComponent, ref, onMounted } from 'vue';
-
-interface IHeroTop {
-	title: string;
-	sub_title: string;
-	backgroundImage: string;
-}
 
 export default defineComponent({
 	name:'AboutView',

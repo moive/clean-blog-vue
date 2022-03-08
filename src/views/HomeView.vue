@@ -32,17 +32,10 @@
 </template>
 
 <script lang="ts">
-import { storyapi } from '@/utils/api';
-import { injectStrict } from '@/utils/global';
-import { PostsKey } from '@/utils/symbols';
+import { injectStrict, PostsKey, storyapi } from '@/utils';
+import { IHeroTop } from '@/utils/types';
 import { StoryblokResult, StoryData } from 'storyblok-js-client';
 import { defineComponent, onMounted, ref, watchEffect } from 'vue';
-
-interface IHeroTop {
-	title: string;
-	sub_title: string;
-	backgroundImage: string;
-}
 
 export default defineComponent({
 	name: 'HomeView',
