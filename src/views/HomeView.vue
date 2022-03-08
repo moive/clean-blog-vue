@@ -24,7 +24,7 @@
 				    class="d-flex justify-content-end mb-4"><a
 				    class="btn btn-primary text-uppercase"
 				    href="/posts"
-					v-if="postItems.length>4"
+					v-if="posts.length>4"
 				>Older Posts →</a></div>
 			</div>
 		</div>
@@ -66,7 +66,7 @@ export default defineComponent({
         });
 
 		watchEffect(()=>{
-            postItems.value = posts.value;
+            postItems.value = posts.value.slice(0,4);
         });
 
 		const formatDate = (post: StoryData)=> {
@@ -77,6 +77,7 @@ export default defineComponent({
 			postItems,
 			formatDate,
 			itemsHero,
+			posts
 		}
 	}
 });
