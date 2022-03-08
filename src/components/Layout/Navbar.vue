@@ -53,8 +53,14 @@ export default defineComponent({
                 _id: el.uuid,
                 name: el.name,
                 url: el.slug == 'home' ? '/' : '/' + el.slug,
+                position: parseInt(el.content.position_nav),
             }));
             
+            // https://linguinecode.com/post/how-to-solve-typescript-possibly-undefined-value
+            // urls.sort((a, b) => (a.position! > b.position!) ? 1 : -1)
+            urls.sort((a,b) => a.position! - b.position!)
+            console.log(urls)
+
             Links.value = urls;
         });
         
